@@ -7,6 +7,8 @@ class Login extends React.Component {
     credentials: {
       username: "",
       password: "",
+      authLevel: "",
+      organization: "",
     }
   };
   render() {
