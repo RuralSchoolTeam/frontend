@@ -4,12 +4,14 @@ import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'react
 class Register extends React.Component {
   state = { 
     credentials: {
-      email: "",
+      username: "",
       password: "",
-      status:"",
-    }
+      authLevel: "",
+      organization: "",
+    },
     data: {
-
+      firstName: "",
+      lastName: "",
     }
    }
   render() { 
@@ -30,8 +32,8 @@ class Register extends React.Component {
           </Col>
         </Row>
         <FormGroup>
-          <Label for="email">Email</Label>
-          <Input type="text" name="email" id="email" placeholder="example@example.com"/>
+          <Label for="username">Username</Label>
+          <Input type="text" name="username" id="username" placeholder="Username"/>
         </FormGroup>
         <FormGroup>
           <Label for="password">New Password</Label>
