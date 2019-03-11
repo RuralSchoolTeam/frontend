@@ -8,6 +8,10 @@ import { Provider } from 'react-redux';
 import thunk from 'react-thunk';
 import logger from 'redux-logger';
 
+// Styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 
