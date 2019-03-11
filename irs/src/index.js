@@ -10,10 +10,6 @@ import logger from 'redux-logger';
 // Style
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
