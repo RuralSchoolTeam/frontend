@@ -6,6 +6,10 @@ class Register extends React.Component {
     credentials: {
       email: "",
       password: "",
+      status:"",
+    }
+    data: {
+
     }
    }
   render() { 
@@ -15,13 +19,13 @@ class Register extends React.Component {
           <Col md={6}>
             <FormGroup>
               <Label for="firstName">First Name</Label>
-              <Input type="name" name="firstName" id="firstName" placeholder="First Name" />
+              <Input type="name" name="firstName" id="firstName" placeholder="First Name"/>
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="lastName">Last Name</Label>
-              <Input type="name" name="lastName" id="lastName" placeholder="Last Name" />
+              <Input type="name" name="lastName" id="lastName" placeholder="Last Name"  />
             </FormGroup>
           </Col>
         </Row>
