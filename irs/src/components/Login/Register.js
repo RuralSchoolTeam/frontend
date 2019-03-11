@@ -11,7 +11,7 @@ class Register extends React.Component {
     data: {
 
     }
-   }
+   };
   render() { 
     return ( 
       <Form>
