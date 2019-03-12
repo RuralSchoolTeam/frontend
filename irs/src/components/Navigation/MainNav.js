@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class MainNav extends React.Component {
   constructor() {
@@ -28,10 +22,10 @@ class MainNav extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#">Components</NavLink>
+                <Link to="/login">Login</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#">GitHub</NavLink>
+                <Link to="/register">Register</Link>
               </NavItem>
             </Nav>
           </Collapse>
