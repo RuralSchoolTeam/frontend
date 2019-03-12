@@ -9,9 +9,8 @@ import {
   NavLink,} from 'reactstrap';
 
 class MainNav extends React.Component {
-  constructor(props) {
-    super(props);
-
+  constructor() {
+    super();
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
