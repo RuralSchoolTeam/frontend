@@ -40,7 +40,7 @@ export class NavBarSide extends React.Component {
           <ul className="nav flex-column">
             <Dropdown nav isOpen={this.state.dropdownError} toggle={this.toggleError}>
               <DropdownToggle nav caret>
-                Example
+                Error
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem href="#" onClick={() => this.props.clickHandler('/api/highest/error')}>
@@ -53,7 +53,7 @@ export class NavBarSide extends React.Component {
             </Dropdown>
             <Dropdown nav isOpen={this.state.dropdownPrice} toggle={this.togglePrice}>
               <DropdownToggle nav caret>
-                Example
+                Price
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem href="#" onClick={() => this.props.clickHandler('/api/highest/price')}>
@@ -66,7 +66,7 @@ export class NavBarSide extends React.Component {
             </Dropdown>
             <Dropdown nav isOpen={this.state.dropdownVolume} toggle={this.toggleVolume}>
               <DropdownToggle nav caret>
-                Example
+                Volume
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem href="#" onClick={() => this.props.clickHandler('/api/highest/volume')}>
