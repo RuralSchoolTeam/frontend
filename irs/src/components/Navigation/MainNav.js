@@ -9,18 +9,15 @@ import {
   NavLink,} from 'reactstrap';
 
 class MainNav extends React.Component {
-  constructor(props) {
-    super(props);
-
+  constructor() {
+    super();
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
     };
   }
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   }
   render() {
     return (
