@@ -5,7 +5,7 @@ export const login = (name, password) => dispatch => {
   dispatch(loadingOn());
   axios()({
     method: 'post',
-    url: 'http://localhost:8000/api/login',
+    url: 'http://localhost:8000/api/auth/login',
     headers: {},
     data: {}
   })
