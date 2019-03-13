@@ -1,18 +1,15 @@
 import React from 'react';
 import NavBarSide from './leftSidebar';
 import IssuesCards from './IssuesCards';
-import { Row, Col } from 'reactstrap';
 
 const DashboardPage = () => (
-  <div>
-    <Row>
-      <Col xs="3">
-        <NavBarSide />
-      </Col>
-      <Col xs="9">
-        <IssuesCards />
-      </Col>
-    </Row>
+  <div className="row">
+    <div className="col-md-2">
+      <NavBarSide />
+    </div>
+    <div className="col-md-10">
+      <IssuesCards />
+    </div>
   </div>
 );
 
