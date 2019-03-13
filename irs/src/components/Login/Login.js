@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { login } from '../../actions/actionCreators';
+import { login } from '../../actions';
 
 class Login extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.handleLogin}>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input 
