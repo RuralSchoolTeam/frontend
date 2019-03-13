@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import Register from './components/Registration/Register';
 import Whoyouare from './components/Whoyouare/Whoyouare';
 import MainNav from './components/Navigation/MainNav';
+import DashboardPage from './components/Dashboard/Dashboard';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/whoyouare" component={Whoyouare} />
+          <Route exact path="/dashboard" component={DashboardPage} />
         </div>
       </Router>
     );
