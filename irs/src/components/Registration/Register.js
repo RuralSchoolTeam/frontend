@@ -14,6 +14,21 @@ class Register extends React.Component {
       lastName: ''
     }
   };
+
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.user,
+        [e.target.name]: e.target.value
+      }
+    })
+  };
+
+  handleRegister = e => {
+    e.preventDefault();
+    this.props.register(this.state.credentials)
+  }
+
   render() {
     return (
       <Form>

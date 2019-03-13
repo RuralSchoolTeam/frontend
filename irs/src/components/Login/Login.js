@@ -6,27 +6,45 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/actionCreators';
 
 class Login extends React.Component {
-  nameRef = React.createRef();
-  passRef = React.createRef();
+  state = {
+    user: {
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChange = e => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value
+      }
+    })
+  };
+
+  // Change push location after you set up the correct auth routes
+  handleLogin = e => {
+    e.preventDefault();
+    this.props.login(this.state.credentials)
+    this.props.history.push('/')
+  }
 
   render() {
     return (
       <Form>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" ref={this.nameRef} />
+          <Input 
+            type="email" 
+            name="email" 
+            id="exampleEmail" placeholder="with a placeholder" onChange={this.handleChange} />
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" ref={this.passRef} />
+          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" onChange={this.handleChange} />
         </FormGroup>
         <button
-          onClick={event => {
-            event.preventDefault();
-            this.props.login(this.nameRef.current.value, this.passRef.current.value);
-            this.nameRef.current.value = '';
-            this.passRef.current.value = '';
-          }}>
+          onClick={this.handleLogin}>
           Submit
         </button>
       </Form>

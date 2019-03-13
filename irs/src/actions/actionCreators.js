@@ -1,37 +1,39 @@
 import * as types from './actionTypes';
 import axios from '../axios/axios';
 
+export const LOGGING_IN = 'LOGGING_IN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = "LOGIN_FAIL";
+
 export const login = (name, password) => dispatch => {
   dispatch({
-    type: types.LOADING_ON
-  })
+    type: LOGGING_IN
+  });
   axios.post('https://international-rural-school.herokuapp.com/api/auth/login', {username: name, password: password})
     .then(res => {
-      dispatch({ type: types.LOGIN, payload: res.data.payload });
+      localStorage.setItem('token', res.data.token)
       dispatch({
-        type: types.ADD_INFO,
-        payload: {
-          username: name,
-          password: password
-        }
+        type: LOGIN_SUCCESS, 
+        payload:res.data.token
       });
-      dispatch({
-        type: types.LOADING_OFF
-      })
     })
-    .catch(err => {
-      console.log(err);
-      dispatch({
-        type: types.LOADING_OFF
-      });
-    });
+    .catch(err => 
+      dispatch({ 
+        type: LOGIN_FAIL, 
+        payload: err.response.data
+      }));
 };
 
+
+
+export const REGISTERING = "REGISTERING";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+
 export const register = (name, password) => dispatch => {
-  console.log('registering', name, password)
   dispatch({
     type: types.REGISTERING
-  })
+  });
   axios.post('https://international-rural-school.herokuapp.com/api/auth/register', {username: name, password: password})
   .then(res => {
     dispatch({
@@ -39,29 +41,10 @@ export const register = (name, password) => dispatch => {
       payload: res.data
     })
   })
-  .catch(err => {
-    console.log(err)
+  .catch(err =>
     dispatch({
       type: types.REGISTER_FAIL,
       payload: err
     })
-  })
+  )
 }
-
-export const logout = () => {
-  return {
-    type: types.LOGOUT
-  };
-};
-
-export const loadingOn = () => {
-  return {
-    type: types.LOADING_ON
-  };
-};
-
-export const loadingOff = () => {
-  return {
-    type: types.LOADING_OFF
-  };
-};
