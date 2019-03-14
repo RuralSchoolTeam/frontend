@@ -7,8 +7,9 @@ import Register from './components/Registration/Register';
 import Whoyouare from './components/Whoyouare/Whoyouare';
 import MainNav from './components/Navigation/MainNav';
 import DashboardPage from './components/Dashboard/Dashboard';
-import ChooseOrg from "./components/Organization/ChooseOrg"
-import AddOrg from "./components/Organization/AddOrg"
+import ChooseOrg from './components/Organization/ChooseOrg';
+import AddOrg from './components/Organization/AddOrg';
+import singleIssue from './components/Dashboard/singleIssue';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/whoyouare" component={Whoyouare} />
           <Route exact path="/choose-organization" component={ChooseOrg} />
           <Route exact path="/add-organization" component={AddOrg} />
+          <Route path="/issues/:id" component={singleIssue} />
         </div>
       </Router>
     );
