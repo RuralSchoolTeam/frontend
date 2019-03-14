@@ -7,6 +7,7 @@ import Register from './components/Registration/Register';
 import MainNav from './components/Navigation/MainNav';
 import DashboardPage from './components/Dashboard/Dashboard';
 import singleIssue from './components/Dashboard/singleIssue';
+import editIssueForm from './components/Dashboard/editIssueForm';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route path="/issues/:id" component={singleIssue} />
+          <Route path="/issues/edit" component={editIssueForm} />
         </div>
       </Router>
     );

@@ -1,4 +1,20 @@
-import { LOGGING_IN, LOGIN_SUCCESS, LOGIN_FAIL, REGISTERING, REGISTER_SUCCESS, REGISTER_FAIL, FETCHING_ISSUES, SUCCESS, ERROR, ADDING_ISSUE, DELETING_ISSUE, UPDATE_ISSUE } from '../actions/index';
+import {
+  LOGGING_IN,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  REGISTERING,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  FETCHING_ISSUES,
+  SUCCESS,
+  ERROR,
+  ADDING_ISSUE,
+  DELETING_ISSUE,
+  EDITFORM,
+  EDITING,
+  EDITED,
+  FAILURE
+} from '../actions/index';
 
 export const initialState = {
   user: {},
@@ -10,8 +26,12 @@ export const initialState = {
   addingIssue: false,
   updatingIssue: false,
   deletingIssue: false,
+  editing: false,
+  edited: false,
+  editForm: false,
   token: localStorage.getItem('token'),
-  error: null
+  error: null,
+  editId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -82,12 +102,24 @@ const reducer = (state = initialState, action) => {
         deletingIssue: true,
         error: null
       };
-    case UPDATE_ISSUE:
+    case EDITING:
       return {
         ...state,
-        updatingIssue: true,
+        editing: true,
         error: null
-      }
+      };
+    case EDITED:
+      return {
+        ...state,
+        issues: action.payload,
+        edited: false,
+        error: null
+      };
+    case FAILURE:
+      return {
+        ...state,
+        error: null
+      };
     default:
       return state;
   }

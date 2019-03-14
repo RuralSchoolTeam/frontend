@@ -14,7 +14,8 @@ class IssueStatusButtons extends Component {
     this.setState({ rSelected });
   }
 
-  render() {
+
+render() {
     return (
       <div>
         <h5>Project Status: {this.state.rSelected}</h5>

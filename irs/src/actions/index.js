@@ -97,16 +97,28 @@ export const deleteIssue = id => dispatch => {
     });
 };
 
-export const UPDATE_ISSUE = 'UPDATE_ISSUE'
 
-export const updateIssue = (id, issue) => dispatch => {
-  dispatch({ type: UPDATE_ISSUE });
-  axios
-    .put(`https://international-rural-school.herokuapp.com/api/issues/${id}`, issue)
-    .then(res => {
-      dispatch({ type: SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: ERROR, payload: err });
-    });
+export const EDITING = 'EDITING';
+export const EDITED = 'EDITED';
+export const FAILURE = 'FAILURE';
+export const EDITFORM = 'EDITFORM';
+
+export function editIssue(id, issue) {
+  return dispatch => {
+    dispatch({ type: EDITING });
+    axios
+      .put(`https://international-rural-school.herokuapp.com/api/issues/${id}`, issue)
+      .then(response => {
+        dispatch({
+          type: EDITED,
+          payload: response.data
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: FAILURE,
+          payload: err
+        });
+      });
+  };
 }
