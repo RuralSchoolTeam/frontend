@@ -96,3 +96,33 @@ export const deleteIssue = id => dispatch => {
       dispatch({ type: ERROR, payload: err });
     });
 };
+
+export const EDITING = 'EDITING';
+export const EDITED = 'EDITED';
+export const FAILURE = 'FAILURE';
+export const EDITFORM = 'EDITFORM';
+
+export function editForm(issue) {
+  return dispatch => {
+    dispatch({ type: EDITFORM, payload: issue });
+  };
+}
+export function editIssue(id, issue) {
+  return dispatch => {
+    dispatch({ type: EDITING });
+    axios
+      .put(`https://international-rural-school.herokuapp.com/api/issues/${id}`, issue)
+      .then(response => {
+        dispatch({
+          type: EDITED,
+          payload: response.data
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: FAILURE,
+          payload: err
+        });
+      });
+  };
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteIssue } from '../../actions/index';
+import { deleteIssue, editForm } from '../../actions/index';
 
 const Issue = props => {
   const handleClick = () => {
@@ -12,6 +12,8 @@ const Issue = props => {
       <h3>
         {props.issue.name} {props.issue.category} {props.issue.notes}
       </h3>
+      <button onClick={() => props.editForm(props.issue)}>Edit</button>
+
       <button onClick={handleClick}>Delete</button>
     </div>
   );
@@ -19,5 +21,5 @@ const Issue = props => {
 
 export default connect(
   null,
-  { deleteIssue }
+  { deleteIssue, editForm }
 )(Issue);

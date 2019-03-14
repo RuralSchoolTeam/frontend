@@ -17,7 +17,6 @@ class IssuesCards extends Component {
       <div className="App">
         <h1>Issues</h1>
         <IssuesForm />
-
         <p>
           {this.props.issues.map(issue => {
             return <Issue issue={issue} key={issue.id} id={issue.id} />;
