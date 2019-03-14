@@ -32,12 +32,12 @@ export const REGISTERING = 'REGISTERING';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
-export const register = (name, password) => dispatch => {
+export const register = (credentials) => dispatch => {
   dispatch({
     type: REGISTERING
   });
   axios
-    .post('https://international-rural-school.herokuapp.com/api/auth/register', { username: name, password: password })
+    .post('https://international-rural-school.herokuapp.com/api/auth/register', { credentials })
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -88,7 +88,7 @@ export const addIssue = issue => dispatch => {
 export const deleteIssue = id => dispatch => {
   dispatch({ type: DELETING_ISSUE });
   axios
-    .delete(`https://international-rural-school.herokuapp.com/api/issues/:id`)
+    .delete(`https://international-rural-school.herokuapp.com/api/issues/${id}`)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
     })
@@ -96,3 +96,17 @@ export const deleteIssue = id => dispatch => {
       dispatch({ type: ERROR, payload: err });
     });
 };
+
+export const UPDATE_ISSUE = 'UPDATE_ISSUE'
+
+export const updateIssue = (id, issue) => dispatch => {
+  dispatch({ type: UPDATE_ISSUE });
+  axios
+    .put(`https://international-rural-school.herokuapp.com/api/issues/${id}`, issue)
+    .then(res => {
+      dispatch({ type: SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: err });
+    });
+}

@@ -1,4 +1,4 @@
-import { LOGGING_IN, LOGIN_SUCCESS, LOGIN_FAIL, REGISTERING, REGISTER_SUCCESS, REGISTER_FAIL, FETCHING_ISSUES, SUCCESS, ERROR, ADDING_ISSUE, DELETING_ISSUE } from '../actions/index';
+import { LOGGING_IN, LOGIN_SUCCESS, LOGIN_FAIL, REGISTERING, REGISTER_SUCCESS, REGISTER_FAIL, FETCHING_ISSUES, SUCCESS, ERROR, ADDING_ISSUE, DELETING_ISSUE, UPDATE_ISSUE } from '../actions/index';
 
 export const initialState = {
   credentials: [],
@@ -82,6 +82,12 @@ const reducer = (state = initialState, action) => {
         deletingIssue: true,
         error: null
       };
+    case UPDATE_ISSUE:
+      return {
+        ...state,
+        updatingIssue: true,
+        error: null
+      }
     default:
       return state;
   }

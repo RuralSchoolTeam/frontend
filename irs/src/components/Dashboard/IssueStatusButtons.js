@@ -17,13 +17,12 @@ class IssueStatusButtons extends Component {
   render() {
     return (
       <div>
-        <h5>Radio Buttons</h5>
+        <h5>Project Status: {this.state.rSelected}</h5>
         <ButtonGroup>
-          <Button color="primary" onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}>One</Button>
-          <Button color="primary" onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}>Two</Button>
-          <Button color="primary" onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>Three</Button>
+          <Button color="primary" onClick={() => this.onRadioBtnClick("Needs To Be Done")} active={this.state.rSelected === "Needs To Be Done"}>Needs To Be Done</Button>
+          <Button color="primary" onClick={() => this.onRadioBtnClick("Scheduled")} active={this.state.rSelected === "Scheduled"}>Scheduled</Button>
+          <Button color="primary" onClick={() => this.onRadioBtnClick("Completed")} active={this.state.rSelected === "Completed"}>Completed</Button>
         </ButtonGroup>
-        <p>Selected: {this.state.rSelected}</p>
       </div>
     );
   }
