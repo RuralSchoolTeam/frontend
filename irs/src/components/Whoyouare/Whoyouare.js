@@ -8,7 +8,7 @@ const Whoyouare = props => {
       <Row>
         <Col xs="6">
           <Jumbotron>
-            <h1 className="display-3">I'm a board member</h1>
+            <h1 className="display-3">Board Member</h1>
             <p className="lead">
               <Button color="primary">Select</Button>
             </p>
@@ -16,7 +16,7 @@ const Whoyouare = props => {
         </Col>
         <Col xs="6">
           <Jumbotron>
-            <h1 className="display-3">I'm a teacher or school admin</h1>
+            <h1 className="display-3">School Admin</h1>
             <p className="lead">
               <Button color="primary">Select</Button>
             </p>

@@ -1,64 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { addIssue } from '../../actions/index';
 
-class IssuesForm extends Component {
-  constructor() {
-    super();
+class IssueForm extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      title: '',
-      responsible: '',
-      description: '',
-      priority: 'low'
+      name: '',
+      category: '',
+      notes: ''
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
+  handleChange = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.onAddTodo(this.state);
-    this.setState({
-      title: '',
-      responsible: '',
-      description: '',
-      priority: 'low'
-    });
-  }
-
-  handleInputChange(e) {
-    const { value, name } = e.target;
-    console.log(value, name);
-    this.setState({
-      [name]: value
-    });
-  }
+    this.props.addIssue(this.state);
+    this.setState({ name: '', category: '', notes: '' });
+  };
 
   render() {
     return (
-      <div className="card">
-        <form onSubmit={this.handleSubmit} className="card-body">
-          <div className="form-group">
-            <input type="text" name="title" className="form-control" value={this.state.title} onChange={this.handleInputChange} placeholder="Title" />
-          </div>
-          <div className="form-group">
-            <input type="text" name="responsible" className="form-control" value={this.state.responsible} onChange={this.handleInputChange} placeholder="Responsible" />
-          </div>
-          <div className="form-group">
-            <input type="text" name="description" className="form-control" value={this.state.description} onChange={this.handleInputChange} placeholder="Description" />
-          </div>
-          <div className="form-group">
-            <select name="priority" className="form-control" value={this.state.priority} onChange={this.handleInputChange}>
-              <option>low</option>
-              <option>medium</option>
-              <option>high</option>
-            </select>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Save
-          </button>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <input name="name" value={this.state.name} text="text" placeholder="Name" onChange={this.handleChange} />
+        <input name="category" value={this.state.category} text="text" placeholder="category" onChange={this.handleChange} />
+        <input name="notes" value={this.state.notes} text="text" placeholder="notes" onChange={this.handleChange} />
+        <button type="submit">Add</button>
+      </form>
     );
   }
 }
 
-export default IssuesForm;
+export default connect(
+  null,
+  { addIssue }
+)(IssueForm);

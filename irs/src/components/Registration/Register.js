@@ -9,17 +9,14 @@ class Register extends React.Component {
       password: '',
       authLevel: '',
       organization: ''
-    },
-    data: {
-      firstName: '',
-      lastName: ''
     }
+    
   };
 
   handleChange = e => {
     this.setState({
       credentials: {
-        ...this.state.user,
+        ...this.state.credentials,
         [e.target.name]: e.target.value
       }
     })
@@ -36,13 +33,27 @@ class Register extends React.Component {
           <Col md={6}>
             <FormGroup>
               <Label for="Username">Username</Label>
-              <Input type="text" name="Username" placeholder="Username" value={this.state.credentials.username} onChange={this.handleChange} required />
+              <Input 
+              type="text" 
+              name="username" 
+              placeholder="Username" 
+              value={this.state.credentials.username}
+              onChange={this.handleChange} 
+              required 
+              />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="password">Password</Label>
-              <Input type="password" name="password" placeholder="Password" value={this.state.credentials.password} onChange={this.handleChange} required />
+              <Input 
+              type="current-password" 
+              name="password" 
+              placeholder="Password" 
+              value={this.state.credentials.password} 
+              onChange={this.handleChange} 
+              required 
+              />
             </FormGroup>
           </Col>
         </Row>
@@ -56,7 +67,7 @@ class Register extends React.Component {
 
           
         </FormGroup> */}
-        <Button>Register</Button>
+        <Button onSubmit={this.handleRegister}>Register</Button>
       </Form>
     );
   }
