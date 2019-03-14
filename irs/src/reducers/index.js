@@ -8,7 +8,7 @@ import {
 } from "../actions";
 
  export const initialState = {
-  users: [],
+  credentials: [],
   fetching: false,
   registering: false,
   loggingIn: false,

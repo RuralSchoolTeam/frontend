@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBarSide from './leftSidebar';
-import IssuesCards from './IssuesCards';
+import IssuesCards from './issuesCards';
 
 const DashboardPage = () => (
   <div className="row">
