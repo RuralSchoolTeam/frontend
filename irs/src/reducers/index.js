@@ -30,7 +30,8 @@ export const initialState = {
   edited: false,
   editForm: false,
   token: localStorage.getItem('token'),
-  error: null
+  error: null,
+  editId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -101,16 +102,17 @@ const reducer = (state = initialState, action) => {
         deletingIssue: true,
         error: null
       };
-    case EDITED:
-      return {
-        ...state,
-        edited: true,
-        error: null
-      };
     case EDITING:
       return {
         ...state,
         editing: true,
+        error: null
+      };
+    case EDITED:
+      return {
+        ...state,
+        issues: action.payload,
+        edited: false,
         error: null
       };
     case EDITFORM:

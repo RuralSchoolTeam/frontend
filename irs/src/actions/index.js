@@ -88,7 +88,7 @@ export const addIssue = issue => dispatch => {
 export const deleteIssue = id => dispatch => {
   dispatch({ type: DELETING_ISSUE });
   axios
-    .delete(`https://international-rural-school.herokuapp.com/api/issues/:id`)
+    .delete(`https://international-rural-school.herokuapp.com/api/issues/${id}`)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
     })

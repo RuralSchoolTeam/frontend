@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getIssues } from '../../actions/index';
+import { Link } from 'react-router-dom';
 
 // subcomponents
 import Issue from './singleIssueCard';
-import IssuesForm from './IssuesForm';
 
 class IssuesCards extends Component {
   componentDidMount() {
@@ -16,12 +16,11 @@ class IssuesCards extends Component {
     return (
       <div className="App">
         <h1>Issues</h1>
-        <IssuesForm />
-        <p>
-          {this.props.issues.map(issue => {
-            return <Issue issue={issue} key={issue.id} id={issue.id} />;
-          })}
-        </p>
+        {this.props.issues.map(issue => (
+          <Link to={`/issues/${issue.id}`}>
+            <Issue issue={issue} key={issue.id} id={issue.id} />
+          </Link>
+        ))}
       </div>
     );
   }

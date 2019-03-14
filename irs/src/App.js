@@ -10,6 +10,7 @@ import DashboardPage from './components/Dashboard/Dashboard';
 import ChooseOrg from './components/Organization/ChooseOrg';
 import AddOrg from './components/Organization/AddOrg';
 import singleIssue from './components/Dashboard/singleIssue';
+import editIssueForm from './components/Dashboard/editIssueForm';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route exact path="/choose-organization" component={ChooseOrg} />
           <Route exact path="/add-organization" component={AddOrg} />
           <Route path="/issues/:id" component={singleIssue} />
+          <Route path="/issues/edit" component={editIssueForm} />
         </div>
       </Router>
     );
