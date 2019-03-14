@@ -7,7 +7,7 @@ import { login } from '../../actions';
 
 class Login extends React.Component {
   state = {
-    user: {
+    credentials: {
       username: "",
       password: ""
     }
@@ -15,7 +15,7 @@ class Login extends React.Component {
 
   handleChange = e => {
     this.setState({
-      user: {
+      credentials: {
         ...this.state.user,
         [e.target.name]: e.target.value
       }
@@ -37,11 +37,18 @@ class Login extends React.Component {
           <Input 
             type="email" 
             name="email" 
-            id="exampleEmail" placeholder="with a placeholder" onChange={this.handleChange} />
+            id="exampleEmail" 
+            placeholder="with a placeholder" 
+            onChange={this.handleChange} />
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" onChange={this.handleChange} />
+          <Input 
+            type="password" 
+            name="password" 
+            id="examplePassword" 
+            placeholder="password placeholder" 
+            onChange={this.handleChange} />
         </FormGroup>
         <button
           onClick={this.handleLogin}>

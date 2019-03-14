@@ -1,23 +1,30 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { deleteIssue } from '../../actions/index';
+import React, { Component } from 'react';
 
-const Issue = props => {
-  const handleClick = () => {
-    props.deleteIssue(props.id);
-  };
-
-  return (
-    <div>
-      <h3>
-        {props.issue.name} {props.issue.category} {props.issue.notes}
-      </h3>
-      <button onClick={handleClick}>Delete</button>
-    </div>
-  );
-};
-
-export default connect(
-  null,
-  { deleteIssue }
-)(Issue);
+class Issue extends Component {
+  componentDidMount() {
+    this.props.getIssues();
+  }
+  render() { 
+    return ( 
+      <div>
+      <div>
+        <h2>{this.issue.name}</h2>
+        <p>{this.issue.catergory}</p>
+        <p>{this.issue.username}</p>
+        <p>{this.issue.notes}</p>
+        <p>{this.issue.logDate}</p>
+        <p>{this.issue.status}</p>
+      </div>
+      <div>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+      <div>
+        <toggle></toggle>
+      </div>
+      </div>
+     );
+  }
+}
+ 
+export default Issue;

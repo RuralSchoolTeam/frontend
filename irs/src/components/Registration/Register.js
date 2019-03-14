@@ -10,6 +10,7 @@ class Register extends React.Component {
       authLevel: '',
       organization: ''
     }
+    
   };
 
   handleChange = e => {
