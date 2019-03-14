@@ -16,7 +16,7 @@ export default class Issue extends Component {
 
   fetchIssue = id => {
     axios
-      .get(`https://international-rural-school.herokuapp.com/api/issues/:id`)
+      .get(`https://international-rural-school.herokuapp.com/api/issues/${id}`)
       .then(response => {
         this.setState(() => ({ issue: response.data }));
       })
