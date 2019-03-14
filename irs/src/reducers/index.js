@@ -17,7 +17,7 @@ import {
 } from '../actions/index';
 
 export const initialState = {
-  credentials: [],
+  user: {},
   fetching: false,
   registering: false,
   loggingIn: false,
@@ -46,7 +46,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        token: action.payload,
         registering: false
       };
     case REGISTER_FAIL:
@@ -65,7 +64,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        token: action.payload
+        token: action.payload.token,
+        user: action.payload.user
       };
     case LOGIN_FAIL:
       return {
@@ -113,12 +113,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         issues: action.payload,
         edited: false,
-        error: null
-      };
-    case EDITFORM:
-      return {
-        ...state,
-        editForm: true,
         error: null
       };
     case FAILURE:

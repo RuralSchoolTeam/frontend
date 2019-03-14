@@ -33,7 +33,8 @@ function mstp(state) {
     addingIssue: state.addingIssue,
     updatingIssue: state.updatingIssue,
     deletingIssue: state.deletingIssue,
-    error: state.error
+    error: state.error,
+    user: state.user
   };
 }
 

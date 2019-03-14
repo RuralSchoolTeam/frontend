@@ -1,29 +1,44 @@
 import React from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { connect } from 'react-redux';
 import { register } from '../../actions';
 
 class Register extends React.Component {
   state = {
-    credentials: {
+    users: {
       username: '',
       password: '',
       authLevel: '',
       organization: ''
-    }
-    
+    },
   };
 
   handleChange = e => {
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      users: {
+        ...this.state.users,
         [e.target.name]: e.target.value
       }
     })
   };
 
+  handleSelect = e => {
+    console.log(e.target.value);
+    this.setState({
+      users: {
+        ...this.state.users,
+        authLevel: e.target.value
+      }
+    })
+  }
+
+
   handleRegister = () => {
-    this.props.register(this.state.credentials)
+    if (this.state.users.authLevel !== ''){
+    this.props.register(this.state.users)
+    } else {
+      alert("Please select your role")
+    }
   }
 
   render() {
@@ -37,7 +52,7 @@ class Register extends React.Component {
               type="text" 
               name="username" 
               placeholder="Username" 
-              value={this.state.credentials.username}
+              value={this.state.users.username}
               onChange={this.handleChange} 
               required 
               />
@@ -50,27 +65,48 @@ class Register extends React.Component {
               type="current-password" 
               name="password" 
               placeholder="Password" 
-              value={this.state.credentials.password} 
+              value={this.state.users.password} 
               onChange={this.handleChange} 
               required 
               />
             </FormGroup>
           </Col>
         </Row>
-        {/* <FormGroup>
-          <Label for="auth">Username</Label>
-          <Input type="text" name="auth" id="auth" placeholder="Username" required />
-        </FormGroup>
+      <div>
         <FormGroup>
-          <Label for="password">New Password</Label>
-          <Input type="text" name="password" id="password" placeholder="Password" required />
+          <Label for="exampleText">Organization Name</Label>
+          <Input 
+            type="textarea" 
+            name="organization" 
+            value={this.state.users.organization}
+            onChange={this.handleChange}
+            id="exampleText" 
+            required/>
+        </FormGroup>
+      </div>
 
-          
-        </FormGroup> */}
+      <div>
+        <FormGroup>
+          <Label for="exampleSelect">Are you a School Admin or a Board Member?</Label>
+          <Input 
+            type="select" 
+            name="authLevel" 
+            id="exampleSelect" 
+            onChange={this.handleSelect} 
+            value={this.state.users.authLevel}>
+              <option></option>
+              <option value="School Admin">School Admin</option>
+              <option value="Board Member">Board Member</option>
+          </Input>
+        </FormGroup>
+      </div>
         <Button onSubmit={this.handleRegister}>Register</Button>
       </Form>
     );
   }
 }
 
-export default Register;
+export default connect(
+  null,
+  { register }
+)(Register);

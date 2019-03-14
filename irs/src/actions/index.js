@@ -32,12 +32,12 @@ export const REGISTERING = 'REGISTERING';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
-export const register = (name, password) => dispatch => {
+export const register = (users) => dispatch => {
   dispatch({
     type: REGISTERING
   });
   axios
-    .post('https://international-rural-school.herokuapp.com/api/auth/register', { username: name, password: password })
+    .post('https://international-rural-school.herokuapp.com/api/auth/register', { users })
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -97,16 +97,12 @@ export const deleteIssue = id => dispatch => {
     });
 };
 
+
 export const EDITING = 'EDITING';
 export const EDITED = 'EDITED';
 export const FAILURE = 'FAILURE';
 export const EDITFORM = 'EDITFORM';
 
-export function editForm(issue) {
-  return dispatch => {
-    dispatch({ type: EDITFORM, payload: issue });
-  };
-}
 export function editIssue(id, issue) {
   return dispatch => {
     dispatch({ type: EDITING });
