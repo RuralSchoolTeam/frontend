@@ -30,25 +30,10 @@ export default class Issue extends Component {
       return <div>Loading Issue information...</div>;
     }
 
-    const { name, category, notes, status } = this.state.issue;
+    const {} = this.state.issue;
     return (
       <div className="save-wrapper">
-        <div className="Issue-card">
-          <h2>{name}</h2>
-          <div className="Issue-category">
-            category: <em>{category}</em>
-          </div>
-          <div className="Issue-notes">
-            notes: <strong>{notes}</strong>
-          </div>
-          <h3>Actors</h3>
-
-          {status.map(star => (
-            <div key={star} className="Issue-star">
-              {star}
-            </div>
-          ))}
-        </div>
+        <div className="Issue-card" />
         <div className="btn-danger">Edit</div>
       </div>
     );
