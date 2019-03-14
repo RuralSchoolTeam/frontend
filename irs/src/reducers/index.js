@@ -1,22 +1,20 @@
-import {
-  LOGGING_IN,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  REGISTERING,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-} from "../actions";
+import { LOGGING_IN, LOGIN_SUCCESS, LOGIN_FAIL, REGISTERING, REGISTER_SUCCESS, REGISTER_FAIL, FETCHING_ISSUES, SUCCESS, ERROR, ADDING_ISSUE, DELETING_ISSUE } from '../actions/index';
 
- export const initialState = {
+export const initialState = {
   credentials: [],
   fetching: false,
   registering: false,
   loggingIn: false,
-  token: localStorage.getItem("token"),
+  fetchingIssues: false,
+  issues: [],
+  addingIssue: false,
+  updatingIssue: false,
+  deletingIssue: false,
+  token: localStorage.getItem('token'),
   error: null
 };
 
- const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTERING:
       return {
@@ -55,9 +53,38 @@ import {
         loggingIn: false,
         error: action.payload
       };
+    case FETCHING_ISSUES:
+      return {
+        ...state,
+        fetchingIssues: true,
+        error: null
+      };
+    case SUCCESS:
+      return {
+        ...state,
+        issues: action.payload,
+        error: null
+      };
+    case ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case ADDING_ISSUE:
+      return {
+        ...state,
+        addingIssue: true,
+        error: null
+      };
+    case DELETING_ISSUE:
+      return {
+        ...state,
+        deletingIssue: true,
+        error: null
+      };
     default:
       return state;
   }
 };
 
- export default reducer;
+export default reducer;

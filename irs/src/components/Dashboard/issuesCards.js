@@ -1,71 +1,43 @@
 import React, { Component } from 'react';
- 
-// data
-import { todos } from './todos.json';
+import { connect } from 'react-redux';
+import { getIssues } from '../../actions/index';
 
 // subcomponents
-import IssuesForm from './IssuesForm';
+import Issue from './singleIssueCard';
 
 class IssuesCards extends Component {
-  constructor() {
-    super();
-    this.state = {
-      todos
-    };
-    this.handleAddTodo = this.handleAddTodo.bind(this);
-  }
-
-  removeTodo(index) {
-    this.setState({
-      todos: this.state.todos.filter((e, i) => {
-        return i !== index;
-      })
-    });
-  }
-
-  handleAddTodo(todo) {
-    this.setState({
-      todos: [...this.state.todos, todo]
-    });
+  componentDidMount() {
+    this.props.getIssues();
   }
 
   render() {
-    const todos = this.state.todos.map((todo, i) => {
-      return (
-        <div className="col-md-4" key={i}>
-          <div className="card mt-4">
-            <div className="card-title text-center">
-              <h3>{todo.title}</h3>
-              <span className="badge badge-pill badge-danger ml-2">{todo.priority}</span>
-            </div>
-            <div className="card-body">{todo.description}</div>
-            <div className="card-footer">
-              <button className="btn btn-danger" onClick={this.removeTodo.bind(this, i)}>
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    });
-
-    // RETURN THE COMPONENT
+    console.log(this.props);
     return (
-      <div className="">
-        <div className="container">
-          <div className="row mt-4">
-            <div className="col-md-4 text-center">
-              <IssuesForm onAddTodo={this.handleAddTodo} />
-            </div>
+      <div className="App">
+        <h1>Dashboard</h1>
 
-            <div className="col-md-8">
-              <div className="row">{todos}</div>
-            </div>
-          </div>
-        </div>
+        <p>
+          {this.props.issues.map(issue => {
+            return <Issue issue={issue} key={issue.id} id={issue.id} />;
+          })}
+        </p>
       </div>
     );
   }
 }
 
-export default IssuesCards;
+function mstp(state) {
+  return {
+    issues: state.issues,
+    fetchingIssues: state.fetchingIssues,
+    addingIssue: state.addingIssue,
+    updatingIssue: state.updatingIssue,
+    deletingIssue: state.deletingIssue,
+    error: state.error
+  };
+}
+
+export default connect(
+  mstp,
+  { getIssues }
+)(IssuesCards);
