@@ -32,12 +32,12 @@ export const REGISTERING = 'REGISTERING';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
-export const register = (credentials) => dispatch => {
+export const register = (users) => dispatch => {
   dispatch({
     type: REGISTERING
   });
   axios
-    .post('https://international-rural-school.herokuapp.com/api/auth/register', { credentials })
+    .post('https://international-rural-school.herokuapp.com/api/auth/register', { users })
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,

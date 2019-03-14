@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { login } from '../../actions';
 
 class Login extends React.Component {
   state = {
-    credentials: {
+    users: {
       username: "",
       password: ""
     }
@@ -15,7 +15,7 @@ class Login extends React.Component {
 
   handleChange = e => {
     this.setState({
-      credentials: {
+      users: {
         ...this.state.user,
         [e.target.name]: e.target.value
       }
@@ -25,7 +25,7 @@ class Login extends React.Component {
   // Change push location after you set up the correct auth routes
   handleLogin = e => {
     e.preventDefault();
-    this.props.login(this.state.credentials)
+    this.props.login(this.state.users)
     this.props.history.push('/')
   }
 

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input, Jumbotron } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { connect } from 'react-redux';
 import { register } from '../../actions';
 
 class Register extends React.Component {
   state = {
-    credentials: {
+    users: {
       username: '',
       password: '',
       authLevel: '',
@@ -14,8 +15,8 @@ class Register extends React.Component {
 
   handleChange = e => {
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      users: {
+        ...this.state.users,
         [e.target.name]: e.target.value
       }
     })
@@ -24,8 +25,8 @@ class Register extends React.Component {
   handleSelect = e => {
     console.log(e.target.value);
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      users: {
+        ...this.state.users,
         authLevel: e.target.value
       }
     })
@@ -33,8 +34,8 @@ class Register extends React.Component {
 
 
   handleRegister = () => {
-    if (this.state.credentials.authLevel !== ''){
-    this.props.register(this.state.credentials)
+    if (this.state.users.authLevel !== ''){
+    this.props.register(this.state.users)
     } else {
       alert("Please select your role")
     }
@@ -51,7 +52,7 @@ class Register extends React.Component {
               type="text" 
               name="username" 
               placeholder="Username" 
-              value={this.state.credentials.username}
+              value={this.state.users.username}
               onChange={this.handleChange} 
               required 
               />
@@ -64,31 +65,27 @@ class Register extends React.Component {
               type="current-password" 
               name="password" 
               placeholder="Password" 
-              value={this.state.credentials.password} 
+              value={this.state.users.password} 
               onChange={this.handleChange} 
               required 
               />
             </FormGroup>
           </Col>
         </Row>
-        <Form>
-        
-      </Form>
-      <Form>
+      <div>
         <FormGroup>
           <Label for="exampleText">Organization Name</Label>
           <Input 
             type="textarea" 
             name="organization" 
-            value={this.state.credentials.organization}
+            value={this.state.users.organization}
             onChange={this.handleChange}
             id="exampleText" 
             required/>
         </FormGroup>
-      </Form>
+      </div>
 
       <div>
-        <h1>Are you a School Admin or a Board Member?</h1>
         <FormGroup>
           <Label for="exampleSelect">Are you a School Admin or a Board Member?</Label>
           <Input 
@@ -96,17 +93,20 @@ class Register extends React.Component {
             name="authLevel" 
             id="exampleSelect" 
             onChange={this.handleSelect} 
-            value={this.state.credentials.authLevel}>
+            value={this.state.users.authLevel}>
               <option></option>
               <option value="School Admin">School Admin</option>
               <option value="Board Member">Board Member</option>
           </Input>
         </FormGroup>
-    </div>
+      </div>
         <Button onSubmit={this.handleRegister}>Register</Button>
       </Form>
     );
   }
 }
 
-export default Register;
+export default connect(
+  null,
+  { register }
+)(Register);

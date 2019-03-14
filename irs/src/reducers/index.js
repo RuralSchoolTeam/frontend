@@ -1,7 +1,7 @@
 import { LOGGING_IN, LOGIN_SUCCESS, LOGIN_FAIL, REGISTERING, REGISTER_SUCCESS, REGISTER_FAIL, FETCHING_ISSUES, SUCCESS, ERROR, ADDING_ISSUE, DELETING_ISSUE, UPDATE_ISSUE } from '../actions/index';
 
 export const initialState = {
-  credentials: [],
+  user: {},
   fetching: false,
   registering: false,
   loggingIn: false,
@@ -26,7 +26,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        token: action.payload,
         registering: false
       };
     case REGISTER_FAIL:
@@ -45,7 +44,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        token: action.payload
+        token: action.payload.token,
+        user: action.payload.user
       };
     case LOGIN_FAIL:
       return {
