@@ -10,7 +10,7 @@ const Issue = props => {
   return (
     <div>
       <h3>
-        {props.issue.name} {props.issue.category} {props.issue.username}
+        {props.issue.name} {props.issue.category} {props.issue.notes}
       </h3>
       <button onClick={handleClick}>Delete</button>
     </div>

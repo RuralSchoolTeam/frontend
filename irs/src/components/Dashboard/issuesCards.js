@@ -4,6 +4,7 @@ import { getIssues } from '../../actions/index';
 
 // subcomponents
 import Issue from './singleIssueCard';
+import IssuesForm from './IssuesForm';
 
 class IssuesCards extends Component {
   componentDidMount() {
@@ -14,7 +15,8 @@ class IssuesCards extends Component {
     console.log(this.props);
     return (
       <div className="App">
-        <h1>Dashboard</h1>
+        <h1>Issues</h1>
+        <IssuesForm />
 
         <p>
           {this.props.issues.map(issue => {
