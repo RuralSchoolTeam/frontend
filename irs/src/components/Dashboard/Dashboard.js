@@ -9,6 +9,7 @@ const DashboardPage = () => (
     </div>
     <div className="col-md-10">
       <IssuesCards />
+      <IssueStatusButtons />
     </div>
   </div>
 );
