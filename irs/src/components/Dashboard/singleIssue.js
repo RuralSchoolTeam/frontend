@@ -86,16 +86,29 @@ class Issue extends Component {
               ) : null}
             </div>
 
-            {/* {localStorage.getItem('authLevel')==="admin" ? 
-          <>
-          <button onClick={this.toggleEditing}>Edit</button>
-          <button onClick={this.delete}>Delete</button>
-           </>
-           : localStorage.getItem('authLevel')==="board" ?
-          <IssueStatusButtons issue={{name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status}} changeHandler={this.changeHandler} />
-          : null} */}
+            {localStorage.getItem("authLevel") === "admin" ? (
+              <>
+                <button className="admin-button" onClick={this.toggleEditing}>
+                  Edit
+                </button>
+                <button className="admin-button" onClick={this.delete}>
+                  Delete
+                </button>
+              </>
+            ) : localStorage.getItem("authLevel") === "board" ? (
+              <IssueStatusButtons
+                issue={{
+                  name: this.state.name,
+                  category: this.state.category,
+                  id: this.state.id,
+                  notes: this.state.notes,
+                  status: this.state.status
+                }}
+                changeHandler={this.changeHandler}
+              />
+            ) : null}
 
-            <button className="admin-button" onClick={this.toggleEditing}>
+            {/* <button className="admin-button" onClick={this.toggleEditing}>
               Edit
             </button>
             <button className="admin-button" onClick={this.delete}>
@@ -110,7 +123,7 @@ class Issue extends Component {
                 status: this.state.status
               }}
               changeHandler={this.changeHandler}
-            />
+            /> */}
           </div>
         </div>
       );
