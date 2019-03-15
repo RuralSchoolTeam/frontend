@@ -5,7 +5,7 @@ import { register } from '../../actions';
 
 class Register extends React.Component {
   state = {
-    users: {
+    user: {
       username: '',
       password: '',
       authLevel: '',
@@ -15,8 +15,8 @@ class Register extends React.Component {
 
   handleChange = e => {
     this.setState({
-      users: {
-        ...this.state.users,
+      user: {
+        ...this.state.user,
         [e.target.name]: e.target.value
       }
     })
@@ -25,8 +25,8 @@ class Register extends React.Component {
   handleSelect = e => {
     console.log(e.target.value);
     this.setState({
-      users: {
-        ...this.state.users,
+      user: {
+        ...this.state.user,
         authLevel: e.target.value
       }
     })
@@ -34,8 +34,8 @@ class Register extends React.Component {
 
 
   handleRegister = () => {
-    if (this.state.users.authLevel !== ''){
-    this.props.register(this.state.users)
+    if (this.state.user.authLevel !== ''){
+    this.props.register(this.state.user)
     } else {
       alert("Please select your role")
     }
@@ -52,7 +52,7 @@ class Register extends React.Component {
               type="text" 
               name="username" 
               placeholder="Username" 
-              value={this.state.users.username}
+              value={this.state.user.username}
               onChange={this.handleChange} 
               required 
               />
@@ -65,7 +65,7 @@ class Register extends React.Component {
               type="current-password" 
               name="password" 
               placeholder="Password" 
-              value={this.state.users.password} 
+              value={this.state.user.password} 
               onChange={this.handleChange} 
               required 
               />
@@ -78,7 +78,7 @@ class Register extends React.Component {
           <Input 
             type="textarea" 
             name="organization" 
-            value={this.state.users.organization}
+            value={this.state.user.organization}
             onChange={this.handleChange}
             id="exampleText" 
             required/>
@@ -93,7 +93,7 @@ class Register extends React.Component {
             name="authLevel" 
             id="exampleSelect" 
             onChange={this.handleSelect} 
-            value={this.state.users.authLevel}>
+            value={this.state.user.authLevel}>
               <option></option>
               <option value="School Admin">School Admin</option>
               <option value="Board Member">Board Member</option>

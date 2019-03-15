@@ -17,7 +17,7 @@ export const login = (name, password) => dispatch => {
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.token
+        payload: res.data
       });
     })
     .catch(err =>
@@ -32,12 +32,12 @@ export const REGISTERING = 'REGISTERING';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
-export const register = (users) => dispatch => {
+export const register = (user) => dispatch => {
   dispatch({
     type: REGISTERING
   });
   axios
-    .post('https://international-rural-school.herokuapp.com/api/auth/register', { users })
+    .post('https://international-rural-school.herokuapp.com/api/auth/register', { user })
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -101,7 +101,6 @@ export const deleteIssue = id => dispatch => {
 export const EDITING = 'EDITING';
 export const EDITED = 'EDITED';
 export const FAILURE = 'FAILURE';
-export const EDITFORM = 'EDITFORM';
 
 export function editIssue(id, issue) {
   return dispatch => {

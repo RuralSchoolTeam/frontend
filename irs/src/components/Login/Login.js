@@ -7,7 +7,7 @@ import { login } from '../../actions';
 
 class Login extends React.Component {
   state = {
-    users: {
+    user: {
       username: "",
       password: ""
     }
@@ -15,7 +15,7 @@ class Login extends React.Component {
 
   handleChange = e => {
     this.setState({
-      users: {
+      user: {
         ...this.state.user,
         [e.target.name]: e.target.value
       }
@@ -25,7 +25,7 @@ class Login extends React.Component {
   // Change push location after you set up the correct auth routes
   handleLogin = e => {
     e.preventDefault();
-    this.props.login(this.state.users)
+    this.props.login(this.state.user)
     this.props.history.push('/')
   }
 
@@ -33,12 +33,12 @@ class Login extends React.Component {
     return (
       <Form onSubmit={this.handleLogin}>
         <FormGroup>
-          <Label for="exampleEmail">Email</Label>
+          <Label for="username">Username</Label>
           <Input 
-            type="email" 
-            name="email" 
+            type="username" 
+            name="username" 
             id="exampleEmail" 
-            placeholder="with a placeholder" 
+            placeholder="Username" 
             onChange={this.handleChange} />
         </FormGroup>
         <FormGroup>
@@ -61,7 +61,7 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.users
+    user: state.user
   };
 }
 

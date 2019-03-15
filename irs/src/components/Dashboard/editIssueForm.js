@@ -69,5 +69,5 @@ function mstp(state) {
 
 export default connect(
   mstp,
-  { editForm, editIssue }
+  { editIssue }
 )(EditForm);
