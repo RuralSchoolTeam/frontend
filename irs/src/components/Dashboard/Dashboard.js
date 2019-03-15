@@ -3,16 +3,23 @@ import NavBarSide from './leftSidebar';
 import IssuesCards from './issuesCards';
 import IssuesForm from './IssuesForm';
 
-const DashboardPage = () => (
+import {connect} from 'react-redux';
+
+const DashboardPage = (props) => (
   <div className="row">
     <div className="col-md-2">
       <NavBarSide />
     </div>
     <div className="col-md-10">
+      {/* {props.user.authLevel==="admin"? <IssuesForm /> : null} */}
       <IssuesForm />
       <IssuesCards />
     </div>
   </div>
 );
 
-export default DashboardPage;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, {})(DashboardPage);

@@ -11,8 +11,25 @@ class IssuesCards extends Component {
     this.props.getIssues();
   }
 
+
+componentWillReceiveProps(nextProps) {
+if (nextProps.issues.length !== this.props.issues.length) {
+  this.props.getIssues()
+}
+
+}
+
+
+
   render() {
     console.log(this.props);
+    if(!this.props.issues || !this.props.issues.length){
+      return(
+        <h4>Loading...</h4>
+      )
+     
+  
+  } else {
     return (
       <div className="App">
         <h1>Issues</h1>
@@ -23,6 +40,8 @@ class IssuesCards extends Component {
         ))}
       </div>
     );
+        }
+
   }
 }
 
