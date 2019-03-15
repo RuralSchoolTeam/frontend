@@ -1,8 +1,8 @@
-import React from 'react';
-import NavBarSide from './leftSidebar';
-import IssuesCards from './issuesCards';
+import React from "react";
+import NavBarSide from "./leftSidebar";
+import IssuesCards from "./issuesCards";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 const DashboardPage = props => (
   <div className="row">
@@ -10,8 +10,8 @@ const DashboardPage = props => (
       <NavBarSide />
     </div>
     <div className="col-md-10">
-      {/* {localStorage.getItem('authLevel')==="admin"? <IssuesForm /> : null} */}
-      <IssuesCards />
+      {localStorage.getItem("authLevel") === "admin" ? <IssuesForm /> : null}
+      {/* <IssuesCards /> */}
     </div>
   </div>
 );
