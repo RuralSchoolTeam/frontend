@@ -7,3 +7,36 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+.d-flex {
+  background: #dfd9d9;
+}
+
+.d-flex .save-wrapper {
+  width: 70%;
+  margin: 100px auto;
+  text-align: center;
+  padding: 100px 10px;
+  line-height: 4rem;
+  background: #f78221;
+  border-radius: 5px;
+  color: #dfd9d9;
+  font-weight: 700;
+}
+
+.d-flex .save-wrapper .Issue-card {
+  font-size: 2 rem;
+}
+
+.d-flex .save-wrapper .Issue-card h2 {
+  font-weight: 600;
+}
+
+.d-flex .save-wrapper .Issue-card .admin-button {
+  height: 35px;
+  /* height: 50px; */
+  width: 65px;
+  text-align: center;
+  line-height: 5px;
+  margin: 0 10px;
+}

@@ -95,8 +95,12 @@ class Issue extends Component {
           <IssueStatusButtons issue={{name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status}} changeHandler={this.changeHandler} />
           : null} */}
 
-            <button onClick={this.toggleEditing}>Edit</button>
-            <button onClick={this.delete}>Delete</button>
+            <button className="admin-button" onClick={this.toggleEditing}>
+              Edit
+            </button>
+            <button className="admin-button" onClick={this.delete}>
+              Delete
+            </button>
             <IssueStatusButtons
               issue={{
                 name: this.state.name,
