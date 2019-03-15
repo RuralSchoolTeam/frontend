@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { deleteIssue, editForm, editIssue } from '../../actions/index';
+import { deleteIssue, editIssue } from '../../actions/index';
 
 class Issue extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Issue extends Component {
     axios
       .get(`https://international-rural-school.herokuapp.com/api/issues/${id}`)
       .then(response => {
-        this.setState(() => ({ issue: response.data }));
+        this.setState(() => ({ issue: { id: response.data.id, name: response.data.name, category: response.data.category, notes: response.data.notes } }));
       })
       .catch(error => {
         console.error(error);
@@ -54,6 +54,11 @@ class Issue extends Component {
     }));
   };
 
+  delete = () => {
+    this.props.deleteIssue(this.props.match.params.id);
+    this.props.history.push('/');
+  };
+
   render() {
     if (!this.state.issue) {
       return <div>Loading Issue information...</div>;
@@ -74,6 +79,7 @@ class Issue extends Component {
             </div>
           </div>
           <button onClick={this.toggleEditing}>Edit</button>
+          <button onClick={() => this.delete}>Delete</button>
         </div>
       );
     } else {
