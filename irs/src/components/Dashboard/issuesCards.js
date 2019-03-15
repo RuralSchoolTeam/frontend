@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getIssues } from '../../actions/index';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getIssues } from "../../actions/index";
+import { Link } from "react-router-dom";
 
 // subcomponents
-import Issue from './singleIssueCard';
+import Issue from "./singleIssueCard";
 
 class IssuesCards extends Component {
   componentDidMount() {
@@ -28,7 +28,7 @@ class IssuesCards extends Component {
           <h1>Issues</h1>
           <div className="row">
             {this.props.issues.map(issue => (
-              <Link to={`/issues/${issue.id}`}>
+              <Link key={issue.id} to={`/issues/${issue.id}`}>
                 <Issue issue={issue} key={issue.id} id={issue.id} />
               </Link>
             ))}
