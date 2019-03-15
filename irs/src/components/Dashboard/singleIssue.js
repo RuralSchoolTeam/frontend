@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import IssueStatusButtons from './IssueStatusButtons'
+import IssueStatusButtons from './IssueStatusButtons';
 import { deleteIssue, editIssue } from '../../actions/index';
 
 class Issue extends Component {
   constructor() {
     super();
     this.state = {
-        id: '',
-        name: '',
-        category: '',
-        status: '',
-        username: '',      
+      id: '',
+      name: '',
+      category: '',
+      status: '',
+      username: '',
       isEditing: false
     };
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
-      this.fetchIssue(id)
-    
+    this.fetchIssue(id);
   }
 
   fetchIssue = id => {
@@ -42,10 +41,8 @@ class Issue extends Component {
 
   changeHandler = e => {
     this.setState({
-
-        [e.target.name]: e.target.value
-      }
-    );
+      [e.target.name]: e.target.value
+    });
   };
 
   toggleEditing = () => {
@@ -88,17 +85,22 @@ class Issue extends Component {
           <IssueStatusButtons issue={{name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status}} changeHandler={this.changeHandler} />
           : null} */}
 
-<button onClick={this.toggleEditing}>Edit</button>
+          <button onClick={this.toggleEditing}>Edit</button>
           <button onClick={this.delete}>Delete</button>
-          <IssueStatusButtons issue={{name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status}} changeHandler={this.changeHandler} />
-          
-
+          <IssueStatusButtons
+            issue={{ name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status }}
+            changeHandler={this.changeHandler}
+          />
         </div>
       );
     } else {
       return (
         <>
-          <form className="editForm" onSubmit={e => this.editIssueHandler(e, {name: this.state.name, username: this.state.username, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status})}>
+          <form
+            className="editForm"
+            onSubmit={e =>
+              this.editIssueHandler(e, { name: this.state.name, username: this.state.username, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status })
+            }>
             <h1>Edit issue</h1>
             <input onChange={this.changeHandler} type="text" name="name" value={this.state.name} placeholder="Name" />
             <br />
@@ -115,7 +117,7 @@ class Issue extends Component {
 
 const mapStateToProps = state => ({
   user: state.user
-})
+});
 
 export default connect(
   mapStateToProps,

@@ -3,9 +3,9 @@ import NavBarSide from './leftSidebar';
 import IssuesCards from './issuesCards';
 import IssuesForm from './IssuesForm';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-const DashboardPage = (props) => (
+const DashboardPage = props => (
   <div className="row">
     <div className="col-md-2">
       <NavBarSide />
@@ -20,6 +20,9 @@ const DashboardPage = (props) => (
 
 const mapStateToProps = state => ({
   user: state.user
-})
+});
 
-export default connect(mapStateToProps, {})(DashboardPage);
+export default connect(
+  mapStateToProps,
+  {}
+)(DashboardPage);
