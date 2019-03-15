@@ -1,16 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { addIssue } from '../../actions/index';
+import React from "react";
+import { connect } from "react-redux";
+import { addIssue } from "../../actions/index";
+
+import moment from "moment";
 
 class IssueForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      category: '',
-      logDate: 1234,
-      status: 'ignored',
-      username: 'Josh Disney'
+      name: "",
+      category: "",
+      logDate: parseInt(moment().format("YYYYMMDD")),
+      status: "ignored",
+      username: "Josh Disney"
     };
   }
 
@@ -22,7 +24,7 @@ class IssueForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addIssue(this.state);
-    this.setState({ name: '', category: '', username: '' });
+    this.setState({ name: "", category: "", username: "" });
   };
 
   render() {
@@ -30,9 +32,21 @@ class IssueForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <h3 className="d-flex justify-content-center">Add a new Issue</h3>
         <div className="d-flex justify-content-center">
-          <input name="name" value={this.state.name} text="text" placeholder="Name" onChange={this.handleChange} />
-          <input name="category" value={this.state.category} text="text" placeholder="category" onChange={this.handleChange} />
-          <button type="submit">Add</button>
+          <input
+            name="name"
+            value={this.state.name}
+            text="text"
+            placeholder="Name"
+            onChange={this.handleChange}
+          />
+          <input
+            name="category"
+            value={this.state.category}
+            text="text"
+            placeholder="category"
+            onChange={this.handleChange}
+          />
+          <button>Add</button>
         </div>
       </form>
     );
