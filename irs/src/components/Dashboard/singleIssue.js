@@ -65,18 +65,19 @@ class Issue extends Component {
 
     if (!this.state.isEditing) {
       return (
-        <div className="save-wrapper">
-          <div className="Issue-card">
-            <h2>{name}</h2>
-            <div className="Issue-category">
-              category: <em>{category}</em>
+        <div className="d-flex justify-content-center">
+          <div className="save-wrapper">
+            <div className="Issue-card">
+              <h2>{name}</h2>
+              <div className="Issue-category">
+                category: <em>{category}</em>
+              </div>
+              <div className="Issue-notes">
+                notes: <strong>{notes}</strong>
+              </div>
             </div>
-            <div className="Issue-notes">
-              notes: <strong>{notes}</strong>
-            </div>
-          </div>
 
-          {/* {this.props.user.authLevel==="admin" ? 
+            {/* {this.props.user.authLevel==="admin" ? 
           <>
           <button onClick={this.toggleEditing}>Edit</button>
           <button onClick={this.delete}>Delete</button>
@@ -85,30 +86,33 @@ class Issue extends Component {
           <IssueStatusButtons issue={{name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status}} changeHandler={this.changeHandler} />
           : null} */}
 
-          <button onClick={this.toggleEditing}>Edit</button>
-          <button onClick={this.delete}>Delete</button>
-          <IssueStatusButtons
-            issue={{ name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status }}
-            changeHandler={this.changeHandler}
-          />
+            <button onClick={this.toggleEditing}>Edit</button>
+            <button onClick={this.delete}>Delete</button>
+            <IssueStatusButtons
+              issue={{ name: this.state.name, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status }}
+              changeHandler={this.changeHandler}
+            />
+          </div>
         </div>
       );
     } else {
       return (
         <>
-          <form
-            className="editForm"
-            onSubmit={e =>
-              this.editIssueHandler(e, { name: this.state.name, username: this.state.username, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status })
-            }>
-            <h1>Edit issue</h1>
-            <input onChange={this.changeHandler} type="text" name="name" value={this.state.name} placeholder="Name" />
-            <br />
-            <input onChange={this.changeHandler} type="text" name="category" value={this.state.category} placeholder="category" />
-            <br />
-            <button variant="success">Update</button>
-          </form>
-          <button onClick={this.toggleEditing}>Cancel</button>
+          <div className="d-flex justify-content-center">
+            <form
+              className="editForm"
+              onSubmit={e =>
+                this.editIssueHandler(e, { name: this.state.name, username: this.state.username, category: this.state.category, id: this.state.id, notes: this.state.notes, status: this.state.status })
+              }>
+              <h1>Edit issue</h1>
+              <input onChange={this.changeHandler} type="text" name="name" value={this.state.name} placeholder="Name" />
+              <br />
+              <input onChange={this.changeHandler} type="text" name="category" value={this.state.category} placeholder="category" />
+              <br />
+              <button variant="success">Update</button>
+            </form>
+            <button onClick={this.toggleEditing}>Cancel</button>
+          </div>
         </>
       );
     }
