@@ -7,25 +7,22 @@ import { login } from '../../actions';
 
 class Login extends React.Component {
   state = {
-    user: {
       username: "",
       password: ""
-    }
   };
 
   handleChange = e => {
     this.setState({
-      user: {
-        ...this.state.user,
+        ...this.state,
         [e.target.name]: e.target.value
       }
-    })
+    )
   };
 
   // Change push location after you set up the correct auth routes
   handleLogin = e => {
     e.preventDefault();
-    this.props.login(this.state.user)
+    this.props.login(this.state)
     this.props.history.push('/')
   }
 
@@ -59,17 +56,12 @@ class Login extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  };
-}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ login }, dispatch);
 }
 
 export default connect(
-  mapStateToProps,
+null,
   mapDispatchToProps
 )(Login);

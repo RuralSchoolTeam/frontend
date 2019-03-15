@@ -7,13 +7,14 @@ export const LOGGING_IN = 'LOGGING_IN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 
-export const login = (name, password) => dispatch => {
+export const login = (user) => dispatch => {
   dispatch({
     type: LOGGING_IN
   });
   axios
-    .post('https://international-rural-school.herokuapp.com/api/auth/login', { username: name, password: password })
+    .post('https://international-rural-school.herokuapp.com/api/auth/login',  user )
     .then(res => {
+   console.log(res.data)
       localStorage.setItem('token', res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
@@ -37,7 +38,7 @@ export const register = (user) => dispatch => {
     type: REGISTERING
   });
   axios
-    .post('https://international-rural-school.herokuapp.com/api/auth/register', { user })
+    .post('https://international-rural-school.herokuapp.com/api/auth/register',  user)
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -75,10 +76,12 @@ export const DELETING_ISSUE = 'DELETING_ISSUE';
 
 export const addIssue = issue => dispatch => {
   dispatch({ type: ADDING_ISSUE });
+  console.log('issue', issue)
   axios
     .post('https://international-rural-school.herokuapp.com/api/issues', issue)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
+      console.log(res)
     })
     .catch(err => {
       dispatch({ type: ERROR, payload: err });
@@ -105,6 +108,7 @@ export const FAILURE = 'FAILURE';
 export function editIssue(id, issue) {
   return dispatch => {
     dispatch({ type: EDITING });
+    console.log(id, issue);
     axios
       .put(`https://international-rural-school.herokuapp.com/api/issues/${id}`, issue)
       .then(response => {

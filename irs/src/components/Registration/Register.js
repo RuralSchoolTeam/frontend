@@ -5,38 +5,38 @@ import { register } from '../../actions';
 
 class Register extends React.Component {
   state = {
-    user: {
+    
       username: '',
       password: '',
       authLevel: '',
       organization: ''
-    },
+    
   };
 
   handleChange = e => {
     this.setState({
-      user: {
-        ...this.state.user,
+      
         [e.target.name]: e.target.value
-      }
+      
     })
   };
 
   handleSelect = e => {
     console.log(e.target.value);
     this.setState({
-      user: {
-        ...this.state.user,
+        
         authLevel: e.target.value
-      }
-    })
+    }
+    )
   }
 
 
-  handleRegister = () => {
-    if (this.state.user.authLevel !== ''){
-    this.props.register(this.state.user)
-    } else {
+  handleRegister = e => {
+    e.preventDefault();
+    if (this.state.authLevel !== ''){
+    this.props.register(this.state)
+  this.props.history.push("/login")  
+  } else {
       alert("Please select your role")
     }
   }
@@ -52,7 +52,7 @@ class Register extends React.Component {
               type="text" 
               name="username" 
               placeholder="Username" 
-              value={this.state.user.username}
+              value={this.state.username}
               onChange={this.handleChange} 
               required 
               />
@@ -65,7 +65,7 @@ class Register extends React.Component {
               type="current-password" 
               name="password" 
               placeholder="Password" 
-              value={this.state.user.password} 
+              value={this.state.password} 
               onChange={this.handleChange} 
               required 
               />
@@ -78,7 +78,7 @@ class Register extends React.Component {
           <Input 
             type="textarea" 
             name="organization" 
-            value={this.state.user.organization}
+            value={this.state.organization}
             onChange={this.handleChange}
             id="exampleText" 
             required/>
@@ -93,10 +93,10 @@ class Register extends React.Component {
             name="authLevel" 
             id="exampleSelect" 
             onChange={this.handleSelect} 
-            value={this.state.user.authLevel}>
+            value={this.state.authLevel}>
               <option></option>
-              <option value="School Admin">School Admin</option>
-              <option value="Board Member">Board Member</option>
+              <option value="admin">School Admin</option>
+              <option value="board">Board Member</option>
           </Input>
         </FormGroup>
       </div>
