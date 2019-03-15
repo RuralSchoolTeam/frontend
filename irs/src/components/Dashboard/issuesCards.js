@@ -1,10 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getIssues } from "../../actions/index";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getIssues } from '../../actions/index';
+import { Link } from 'react-router-dom';
 
 // subcomponents
-import Issue from "./singleIssueCard";
+import Issue from './singleIssueCard';
+import IssuesForm from './IssuesForm';
+import styled from 'styled-components';
+
+const IssueCardsStyle = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20px;
+  .example {
+    width: 25%;
+  }
+`;
 
 class IssuesCards extends Component {
   componentDidMount() {
@@ -23,17 +34,21 @@ class IssuesCards extends Component {
       return <h4>Loading...</h4>;
     } else {
       return (
-        <div className="App">
-          <br />
-          <h1>Issues</h1>
-          <div className="row">
-            {this.props.issues.map(issue => (
-              <Link key={issue.id} to={`/issues/${issue.id}`}>
-                <Issue issue={issue} key={issue.id} id={issue.id} />
-              </Link>
-            ))}
+        <IssueCardsStyle>
+          <div className="App">
+            <IssuesForm />
+
+            <br />
+            <h1>Issues</h1>
+            <div className="row">
+              {this.props.issues.map(issue => (
+                <Link key={issue.id} to={`/issues/${issue.id}`}>
+                  <Issue className="example" issue={issue} key={issue.id} id={issue.id} />
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        </IssueCardsStyle>
       );
     }
   }

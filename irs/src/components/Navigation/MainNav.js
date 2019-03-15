@@ -1,14 +1,6 @@
-import React from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class MainNav extends React.Component {
   constructor() {
@@ -23,8 +15,8 @@ class MainNav extends React.Component {
   }
 
   clearAuth() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("authLevel");
+    localStorage.removeItem('token');
+    localStorage.removeItem('authLevel');
   }
 
   render() {
@@ -35,7 +27,7 @@ class MainNav extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {!localStorage.getItem("token") ? (
+              {!localStorage.getItem('token') ? (
                 <>
                   <NavItem>
                     <NavLink>
