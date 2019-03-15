@@ -28,9 +28,12 @@ class IssueForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input name="name" value={this.state.name} text="text" placeholder="Name" onChange={this.handleChange} />
-        <input name="category" value={this.state.category} text="text" placeholder="category" onChange={this.handleChange} />
-        <button type="submit">Add</button>
+        <h3 className="d-flex justify-content-center">Add a new Issue</h3>
+        <div className="d-flex justify-content-center">
+          <input name="name" value={this.state.name} text="text" placeholder="Name" onChange={this.handleChange} />
+          <input name="category" value={this.state.category} text="text" placeholder="category" onChange={this.handleChange} />
+          <button type="submit">Add</button>
+        </div>
       </form>
     );
   }

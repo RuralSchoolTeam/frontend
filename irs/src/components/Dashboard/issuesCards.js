@@ -11,37 +11,31 @@ class IssuesCards extends Component {
     this.props.getIssues();
   }
 
-
-componentWillReceiveProps(nextProps) {
-if (nextProps.issues.length !== this.props.issues.length) {
-  this.props.getIssues()
-}
-
-}
-
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.issues.length !== this.props.issues.length) {
+      this.props.getIssues();
+    }
+  }
 
   render() {
     console.log(this.props);
-    if(!this.props.issues || !this.props.issues.length){
-      return(
-        <h4>Loading...</h4>
-      )
-     
-  
-  } else {
-    return (
-      <div className="App">
-        <h1>Issues</h1>
-        {this.props.issues.map(issue => (
-          <Link to={`/issues/${issue.id}`}>
-            <Issue issue={issue} key={issue.id} id={issue.id} />
-          </Link>
-        ))}
-      </div>
-    );
-        }
-
+    if (!this.props.issues || !this.props.issues.length) {
+      return <h4>Loading...</h4>;
+    } else {
+      return (
+        <div className="App">
+          <br />
+          <h1>Issues</h1>
+          <div className="row">
+            {this.props.issues.map(issue => (
+              <Link to={`/issues/${issue.id}`}>
+                <Issue issue={issue} key={issue.id} id={issue.id} />
+              </Link>
+            ))}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
